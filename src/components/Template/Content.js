@@ -6,9 +6,6 @@ import HomeDetail from '../Pages/Home/Detail.js'
 import Category from '../Pages/Category/Index.js'
 import CategoryCreate from '../Pages/Category/Create.js'
 import CategoryEdit from '../Pages/Category/Edit.js'
-import Group from '../Pages/Group/Index.js'
-import GroupCreate from '../Pages/Group/Create.js'
-import GroupEdit from '../Pages/Group/Edit.js'
 import User from '../Pages/User/Index.js'
 import UserCreate from '../Pages/User/Create.js'
 import UserEdit from '../Pages/User/Edit.js'
@@ -28,11 +25,6 @@ function Content () {
                 <Route path="/category" component={Category} />
                 <Route path="/categorycreate" component={CategoryCreate} />
                 <Route path="/categoryedit/:id" component={CategoryEdit} />
-
-                {/* group */}
-                <Route path="/group" component={Group} />
-                <Route path="/groupcreate" component={GroupCreate} />
-                <Route path="/groupedit/:id" component={GroupEdit} />
 
                 {/* user */}
                 <Route path="/user" component={User} />

@@ -43,7 +43,7 @@ function Category() {
             }
         }
     ];
-
+console.log(userData, "user")
     const options = {
         filterType: 'checkbox',
         selectableRows: false
@@ -55,16 +55,16 @@ function Category() {
     }
     async function getData() {
         const request = await axios.get(
-            process.env.REACT_APP_API_URL + '/category'
+            process.env.REACT_APP_API_URL + 'category'
         )
+        console.log(request.data)
         const result = []
         request
-            .data
-            .data
+            .data.data
             .map(function (item, index) {
                 result.push({
                     category_name: item.category_name,
-                    creation_user: item.owner.name,
+                    creation_user: item.created_by.first_name,
                     creation_date: new Date(item.createdAt).toISOString().slice(0,10),
                     action: <React.Fragment>
                             <NavLink
@@ -82,18 +82,26 @@ function Category() {
             })
         setData(result)
     }
-    const deleteData = async id => {
-        const requestdelete = await axios.delete(
-            process.env.REACT_APP_API_URL + '/category/' + id
+    const deleteData = async (id) => {
+        console.log(id,"nah")
+        if(userData.role.role === "admin"){
+            const requestdelete = await axios.delete(
+            process.env.REACT_APP_API_URL + 'category/' + id
         )
-        if (requestdelete.data.status) {
-            toast.success(requestdelete.data.message, {
-                position: toast.POSITION.TOP_CENTER,
-                autoClose: 2000
-            });
-            getData()
+            if (requestdelete.data.status) {
+                toast.success(requestdelete.data.message, {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 2000
+                });
+                getData()
+            } else {
+                toast.error(requestdelete.data.message, {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 3000
+                });
+            }
         } else {
-            toast.error(requestdelete.data.message, {
+            toast.error("Not Authorization", {
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 3000
             });
@@ -105,7 +113,7 @@ function Category() {
     }, [])
 
     return (
-        <div classname="row" style={{
+        <div className="row" style={{
                 marginLeft: 5
             }}>
             <div className="col-12">

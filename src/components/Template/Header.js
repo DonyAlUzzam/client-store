@@ -2,15 +2,17 @@ import React, {useState} from 'react'
 import axios from 'axios'
 
 function Header(props) {
+    const userData = JSON.parse(props.userData)
     
-    const[name, setName] = useState(props.userData ? props.userData.data.name : '')
+    const[name, setName] = useState(userData ? userData.first_name : '')
     const processLogout = async () => {
-        await axios.post('http://localhost:3000/users/logout', {
+        await axios.post(process.env.REACT_APP_API_URL + 'users/logout', {
             headers: {
-            Authorization: `Bearer ${props.userData.token}`,
+            Authorization: `Bearer ${userData.token}`,
             },
         })
         window.localStorage.removeItem('userData')
+        window.localStorage.removeItem('userRole')
         window.location.href = '/login'
     }
     return (

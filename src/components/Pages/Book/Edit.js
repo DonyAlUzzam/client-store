@@ -11,13 +11,13 @@ function Edit(props) {
         .getItem('userData')
             ? JSON.parse(window.localStorage.getItem('userData'))
             : {}
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
-    const [publisher, setPublisher] = useState('')
+    const [book_name, setBookName] = useState('')
+    const [desc, setDesc] = useState('')
+    const [cover, setCover] = useState('')
     const [author, setAuthor] = useState('')
     const [category, setCategory] = useState('')
-    const [stock, setStock] = useState('')
-    const [owner, setOwner] = useState('')
+    const [qty, setQty] = useState('')
+    const [price, setPrice] = useState('')
     const [dataCategory, setDataCategory] = useState([])
     const [loading, setLoading] = useState(false)
     const [goto, setGoto] = useState(false)
@@ -26,52 +26,55 @@ function Edit(props) {
         Authorization: `Bearer ${userData.token}`
     }
     const saveData = async () => {
-        setLoading(true)
-        const request = await axios.patch(
-            process.env.REACT_APP_API_URL + '/book',
-            {title, description, category, stock, owner, publisher, author, id:props.match.params.id}
-        )
-        setLoading(false)
-        if (request.data.status) {
-            toast.success(request.data.message, {
-                position: toast.POSITION.TOP_CENTER,
-                autoClose: 2000
-            });
-            setTimeout(function () {
-                setGoto(true)
-            }, 2000);
-
-        } else {
-            toast.error(request.data.message, {
-                position: toast.POSITION.TOP_CENTER,
-                autoClose: 3000
-            });
-        }
+            setLoading(true)
+            const request = await axios.patch(
+                process.env.REACT_APP_API_URL + 'book/'+props.match.params.id,{
+                    book_name, author, desc, category, qty, price
+                }
+                
+            )
+            setLoading(false)
+            if (request.data.status) {
+                toast.success(request.data.message, {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 2000
+                });
+                setTimeout(function () {
+                    setGoto(true)
+                }, 2000);
+    
+            } else {
+                toast.error(request.data.message, {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 3000
+                });
+            }
     }
     const resetData = async () => {
-        setTitle('')
-        setDescription('')
-        setStock('')
-        setPublisher('')
+        setBookName('')
+        setDesc('')
+        setQty('')
+        setPrice('')
         setAuthor('')
     }
     async function getDataCategory() {
         const request = await axios.get(
-            process.env.REACT_APP_API_URL + '/category'
+            process.env.REACT_APP_API_URL + 'category'
         )
+        console.log(request.data, "d")
         setDataCategory(request.data.data)
     }
     const setFormData = async () => {
         const request = await axios.get(
-            process.env.REACT_APP_API_URL + '/book/'+props.match.params.id
+            process.env.REACT_APP_API_URL + 'book/'+props.match.params.id
         )
         if (request.data.status) {
-            setTitle(request.data.data.title)
-            setDescription(request.data.data.description)
-            setStock(request.data.data.stock)
-            setPublisher(request.data.data.publisher)
-            setAuthor(request.data.data.author)
-            setCategory(request.data.data.category)
+            setBookName(request.data.data[0].book_name)
+            setDesc(request.data.data[0].desc)
+            setQty(request.data.data[0].qty)
+            setPrice(request.data.data[0].price)
+            setAuthor(request.data.data[0].author)
+            setCategory(request.data.data[0].category_id.category_name)
             
         } else {
             toast.error(request.data.message, {
@@ -81,7 +84,6 @@ function Edit(props) {
         }
     }
     useEffect(() => {
-        setOwner(userData.data._id)
         getDataCategory()
         setFormData()
     }, [])
@@ -118,22 +120,12 @@ function Edit(props) {
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                value={title}
-                                                onChange={e => setTitle(e.target.value)}
+                                                value={book_name}
+                                                onChange={e => setBookName(e.target.value)}
                                                 placeholder="Book Name"/>
                                         </div>
                                     </div>
-                                    <div className="col-md-12">
-                                        <div className="form-group">
-                                            <label>Publisher</label>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                value={publisher}
-                                                onChange={e => setPublisher(e.target.value)}
-                                                placeholder="Book Name"/>
-                                        </div>
-                                    </div>
+                                   
                                     <div className="col-md-12">
                                         <div className="form-group">
                                             <label>Author</label>
@@ -150,8 +142,8 @@ function Edit(props) {
                                             <label>Book Description</label>
                                             <textarea
                                                 className="form-control"
-                                                value={description}
-                                                onChange={e => setDescription(e.target.value)}
+                                                value={desc}
+                                                onChange={e => setDesc(e.target.value)}
                                                 placeholder="Description..."
                                                 defaultValue={""}rows={3}/>
 
@@ -164,12 +156,7 @@ function Edit(props) {
                                                 <option value=''>Select Category</option>
                                                 {
                                                     dataCategory.map(function (item, index) {
-                                                        if(item._id == category){
-                                                            return (<option key={index} selected value={item._id}>{item.category_name}</option>)
-                                                        }else{
-                                                           return (<option key={index} value={item._id}>{item.category_name}</option>)
-                                                        }
-                                                        
+                                                        return (<option key={index} value={item._id}>{item.category_name}</option>)
                                                     })
                                                 }
                                             </select>
@@ -181,11 +168,38 @@ function Edit(props) {
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                value={stock}
-                                                onChange={e => setStock(e.target.value)}
+                                                value={qty}
+                                                onChange={e => setQty(e.target.value)}
                                                 placeholder="Stock"/>
                                         </div>
                                     </div>
+                                    <div className="col-md-12">
+                                        <div className="form-group">
+                                            <label>Price</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                value={price}
+                                                onChange={e => setPrice(e.target.value)}
+                                                placeholder="Book Name"/>
+                                        </div>
+                                    </div>
+                                    {/* <div className="col-lg-12">
+                                        <div className="form-group">
+                                        <label>Cover</label>
+                                            <input
+                                              className="form-control"
+                                              variant="outlined"
+                                              margin="normal"
+                                              required
+                                              fullWidth
+                                              name="upload"
+                                              type="file"
+                                              onChange={event=>setCover(event.target.files[0])}
+                                              id="file"
+                                              inputProps={{ accept: 'images/jpeg, images/jpg, images/png' }}/>
+                                        </div>
+                                    </div> */}
                                 </div>
 
                             </BlockUi>

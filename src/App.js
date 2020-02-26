@@ -1,6 +1,7 @@
 import React from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import './App.css'
+import "./assets/resitdc/css/resitdc.css";
 import Core from './components/Template/Core'
 import Login from './components/Pages/Auth/Login'
 import Register from './components/Pages/Auth/Register'

@@ -29,8 +29,8 @@ function User() {
             }
         },
         {
-            name: "group",
-            label: "Group",
+            name: "role",
+            label: "Role",
             options: {
                 filter: true,
                 sort: true
@@ -64,17 +64,18 @@ function User() {
     }
     async function getData() {
         const request = await axios.get(
-            process.env.REACT_APP_API_URL + '/user'
+            process.env.REACT_APP_API_URL + 'users'
         )
+        console.log(request.data, "role")
         const result = []
         request
             .data
             .data
             .map(function (item, index) {
                 result.push({
-                    name: item.name,
+                    name: item.first_name,
                     email: item.email,
-                    group: item.group,
+                    role: item.role.role,
                     creation_date: new Date(item.createdAt).toISOString().slice(0,10),
                     action: <React.Fragment>
                             <NavLink

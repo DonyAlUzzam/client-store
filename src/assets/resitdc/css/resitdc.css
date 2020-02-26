@@ -1,0 +1,497 @@
+a:hover {
+  text-decoration: none;
+}
+.fakeimg {
+  height: 200px;
+  background: #aaa;
+}
+#book-search #input-search {
+  border-radius: 15px 0 0 15px;
+  margin-right: 0 !important;
+  /*width: 60%*/
+}
+#book-search #input-search:focus {
+  outline: none;
+  /*border: none;*/
+}
+#book-search #button-search {
+  border-radius: 0 15px 15px 0;
+  margin-left: 0 !important;
+}
+.bg-resitbook {
+  /*background-color: #FFF !important;*/
+  background: rgba(255, 255, 255, 0.7);
+}
+.visible {
+  opacity: 1;
+}
+.visible-1 {
+  opacity: 0.1;
+}
+.visible-2 {
+  opacity: 0.2;
+}
+.visible-3 {
+  opacity: 0.3;
+}
+.visible-4 {
+  opacity: 0.4;
+}
+.visible-5 {
+  opacity: 0.5;
+}
+.visible-6 {
+  opacity: 0.6;
+}
+.visible-7 {
+  opacity: 0.7;
+}
+.visible-8 {
+  opacity: 0.8;
+}
+.visible-9 {
+  opacity: 0.9;
+}
+.btn-resit {
+  border-radius: 15px !important;
+  padding: 0.2rem 0.8rem;
+  margin: 0 3px;
+  font-weight: bold;
+  display: block;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+}
+.btn-resit:hover {
+  text-decoration: none;
+}
+.btn-resit-login {
+  background-color: white !important;
+  color: #17a2b8 !important;
+  border: 2px solid #17a2b8 !important;
+}
+.btn-resit-register {
+  background-color: #17a2b8 !important;
+  color: #fff !important;
+  border: 2px solid #17a2b8 !important;
+}
+.navbar-brand .logo {
+  width: 150px !important;
+}
+.nav-item {
+  padding: 3px 4px;
+}
+.navbar-resit {
+  /*border-left: 1px solid black;*/
+}
+.resit-shadow {
+  box-shadow: 2px 1px 10px rgba(0, 0, 0, 0.2);
+}
+.resit-login-banner {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.resit-full-height {
+  height: 100%;
+}
+
+.resit-row {
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.bg-resit-image {
+  /* background-image: url('../../images/banner1.png'); */
+  width: 100%;
+  /*background-size: contain;*/
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 0;
+  margin-top: 86px;
+  height: 296px;
+  padding-right: 160px;
+  padding-left: 460px;
+}
+.resit-judul-filter {
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 1px solid #17a2b8;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.resit-filter-bar {
+  margin-bottom: 20px;
+  padding: 5px 10px 10px 15px;
+  background-color: #50bdcf !important;
+  border-radius: 9px;
+  color: white;
+  font-weight: bold;
+}
+.resit-little-navbar {
+  display: block;
+  width: 100%;
+  height: 25px;
+  background: rgba(23, 162, 184, 0.8);
+}
+.slogan-right {
+  text-align: right;
+}
+.resit-cart {
+  margin: 0 10px;
+  padding: 0 10px;
+  /*border-left: 1px solid #17a2b8;*/
+  /*border-right: 1px solid #17a2b8;*/
+}
+.resit-box {
+  display: inline-block;
+  border-radius: 0.1em;
+  padding: 30px 0;
+  width: 146px;
+  height: 140px;
+  color: #fff;
+  margin: 10px 0;
+  border-radius: 50%;
+  /*height: 70%;*/
+}
+.resit-navbar {
+  margin-top: 25px;
+}
+.text-black {
+  color: #000;
+}
+.judul-bb {
+  font-weight: bold;
+  display: block;
+  font-size: 22px;
+  padding: 5px 12px 5px 0;
+  border-bottom: 1px solid black;
+  margin: 25px 0;
+  display: inline-block;
+}
+.judul {
+  font-weight: bold;
+  display: block;
+  font-size: 22px;
+}
+.sub-judul {
+  font-weight: normal !important;
+  display: block;
+  font-size: 16px;
+}
+.resit-slogan {
+  margin-bottom: 10px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #17a2b8;
+}
+
+.resit-box-produk {
+  width: 99.9%;
+  background-color: #fff;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
+  display: block;
+  margin-bottom: 25px;
+  border-radius: 0.75rem;
+  position: relative;
+  padding: 5px;
+}
+.resit-box-produk .resit-produk {
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem 0.75rem 0 0;
+  padding: 4px;
+}
+/* .resit-box-produk */
+ .resit-foto {
+  padding-top: 100%;
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+.resit-box-produk .resit-produk .resit-nama-produk {
+  color: black;
+  /*font-weight: bold;*/
+  font-size: 18px;
+  word-wrap: break-word;
+  line-height: 1.125rem;
+  height: 2.25rem;
+  margin-top: 10px;
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.resit-box-produk .resit-produk .resit-harga-produk {
+  margin-top: 3px;
+  width: 100%;
+  font-size: 14px;
+}
+.resit-master-box .resit-box-produk .resit-box-dropdown {
+  position: absolute;
+  right: 10px;
+}
+.resit-master-box
+  .resit-box-produk
+  .resit-box-dropdown
+  .resit-box-dropdown-menu {
+  position: absolute;
+  transform: translate3d(-35px, -148px, 0px);
+  top: 0px;
+  left: 0px;
+  will-change: transform;
+  z-index: 5 !important;
+}
+.resit-box-produk .resit-produk .resit-harga-produk .resit-harga {
+  width: 90%;
+  font-weight: bold;
+  color: #f00;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  float: left;
+  text-align: left;
+}
+.resit-box-produk .resit-produk .resit-harga-produk .resit-harga-diskon {
+  width: 45%;
+  font-weight: bold;
+  color: #444;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-decoration: line-through;
+  margin-right: 5px;
+  text-align: left;
+}
+.resit-box-produk .resit-produk .resit-harga-produk .resit-harga-asli {
+  width: 50%;
+  font-weight: bold;
+  color: #f00;
+  text-align: right;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.resit-box-produk .resit-produk .resit-produk-terjual {
+  text-align: right;
+  color: #000;
+  margin-top: 40px;
+  margin-bottom: 5px;
+}
+.resit-radius-1 {
+  border-radius: 10px;
+}
+
+.resit-radius-2 {
+  border-radius: 20px;
+}
+
+.resit-radius-3 {
+  border-radius: 30px;
+}
+
+.resit-radius-4 {
+  border-radius: 40px;
+}
+
+.resit-radius-5 {
+  border-radius: 50px;
+}
+
+.resit-radius-6 {
+  border-radius: 60px;
+}
+
+.resit-radius-7 {
+  border-radius: 70px;
+}
+
+.resit-radius-8 {
+  border-radius: 80px;
+}
+
+.resit-radius-9 {
+  border-radius: 90px;
+}
+
+.resit-radius-10 {
+  border-radius: 100px;
+}
+
+.resit-radius-11 {
+  border-radius: 110px;
+}
+
+.resit-radius-12 {
+  border-radius: 120px;
+}
+
+.resit-radius-13 {
+  border-radius: 130px;
+}
+
+.resit-radius-14 {
+  border-radius: 140px;
+}
+
+.resit-radius-15 {
+  border-radius: 150px;
+}
+
+.resit-radius-16 {
+  border-radius: 160px;
+}
+
+.resit-radius-17 {
+  border-radius: 170px;
+}
+
+.resit-radius-18 {
+  border-radius: 180px;
+}
+
+.resit-radius-19 {
+  border-radius: 190px;
+}
+
+.resit-radius-20 {
+  border-radius: 200px;
+}
+.resit-login-input {
+  height: unset;
+  margin: 13px 0;
+  border-radius: 20px;
+  padding: 8px 15px !important;
+  font-size: 20px;
+}
+.resit-register-input {
+  height: unset;
+  margin: 1px 0;
+  border-radius: 20px;
+  padding: 6px 14px !important;
+  font-size: 16px;
+}
+.resit-outline-size-1 {
+  border-width: 1px;
+}
+
+.resit-outline-size-2 {
+  border-width: 2px;
+}
+
+.resit-outline-size-3 {
+  border-width: 3px;
+}
+
+.resit-outline-size-4 {
+  border-width: 4px;
+}
+
+.resit-outline-size-5 {
+  border-width: 5px;
+}
+
+.resit-outline-size-6 {
+  border-width: 6px;
+}
+
+.resit-outline-size-7 {
+  border-width: 7px;
+}
+
+.resit-outline-size-8 {
+  border-width: 8px;
+}
+
+.resit-outline-size-9 {
+  border-width: 9px;
+}
+
+.resit-outline-size-10 {
+  border-width: 10px;
+}
+
+.resit-outline-size-11 {
+  border-width: 11px;
+}
+
+.resit-outline-size-12 {
+  border-width: 12px;
+}
+
+.resit-outline-size-13 {
+  border-width: 13px;
+}
+
+.resit-outline-size-14 {
+  border-width: 14px;
+}
+
+.resit-outline-size-15 {
+  border-width: 15px;
+}
+
+.resit-outline-size-16 {
+  border-width: 16px;
+}
+
+.resit-outline-size-17 {
+  border-width: 17px;
+}
+
+.resit-outline-size-18 {
+  border-width: 18px;
+}
+
+.resit-outline-size-19 {
+  border-width: 19px;
+}
+
+.resit-outline-size-20 {
+  border-width: 20px;
+}
+.resit-btn-navbar{
+  padding-left: 17px;
+  padding-right: 17px;
+  font-weight: bold;
+  background-color: #FFF;
+}
+.resit-shadow{
+  box-shadow: 1px 1px 7px rgba(0,0,0,0.2);
+}
+.resit-box-detail{
+  padding:0 10px;
+}
+.resit-judul-detail-buku{
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+.resit-judul-detail{
+  font-size: 22px;
+  /*margin-bottom: -0px;*/
+}
+h3{
+  font-size: 23px;
+}
+hr{
+  margin: -15px 0;
+}
+.resit-author-detail{
+  font-size: 22px;
+}
+.resit-genre-detail{
+  font-size: 16px;
+}
+.resit-deskripsi-detail{
+  font-size: 20px;
+}
+.resit-harga-detail{
+  font-weight: bold;
+  /*color: #F00;*/
+}

@@ -5,6 +5,7 @@ import axios from 'axios'
 import {toast} from 'react-toastify'
 
 function Book() {
+
     const userData = window
         .localStorage
         .getItem('userData')
@@ -29,8 +30,8 @@ function Book() {
             }
         },
         {
-            name: "creation_user",
-            label: "Creation User",
+            name: "author",
+            label: "Author book",
             options: {
                 filter: true,
                 sort: true
@@ -63,7 +64,7 @@ function Book() {
     }
     async function getData() {
         const request = await axios.get(
-            process.env.REACT_APP_API_URL + '/book'
+            process.env.REACT_APP_API_URL + 'books'
         )
         const result = []
         request
@@ -71,9 +72,9 @@ function Book() {
             .data
             .map(function (item, index) {
                 result.push({
-                    title: item.title,
-                    category: item.category.category_name,
-                    creation_user: item.owner.name,
+                    title: item.book_name,
+                    category: item.category_id.category_name,
+                    author: item.author,
                     creation_date: new Date(item.createdAt).toISOString().slice(0,10),
                     action: <React.Fragment>
                             <NavLink
@@ -93,7 +94,7 @@ function Book() {
     }
     const deleteData = async id => {
         const requestdelete = await axios.delete(
-            process.env.REACT_APP_API_URL + '/book/' + id
+            process.env.REACT_APP_API_URL + 'book/' + id
         )
         if (requestdelete.data.status) {
             toast.success(requestdelete.data.message, {

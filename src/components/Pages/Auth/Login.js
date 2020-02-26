@@ -14,17 +14,21 @@ function Login() {
     const processLogin = async () => {
         setLoading(true)
         const request = await axios.post(
-            process.env.REACT_APP_API_URL + '/users/login',
+            process.env.REACT_APP_API_URL + 'users/login',
             {email, password}
         )
         setLoading(false)
+        
         if (request.data.status) {
             toast.success(request.data.message, {position: toast.POSITION.TOP_CENTER});
             window.localStorage.setItem('userData', JSON.stringify(request.data))
+            window.localStorage.setItem('userRole', JSON.stringify(request.data.role.role))
+
             setTimeout(function () {
                 window.location.href = '/'
             }, 3000)
-        } else {
+        } 
+        else {
             toast.error(request.data.message, {position: toast.POSITION.TOP_CENTER});
         }
     }

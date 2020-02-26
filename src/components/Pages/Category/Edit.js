@@ -19,38 +19,47 @@ function Edit(props) {
         Authorization: `Bearer ${userData.token}`
     }
     const saveData = async () => {
-        setLoading(true)
-        const request = await axios.patch(
-            process.env.REACT_APP_API_URL + '/category',
-            {category_name, id:props.match.params.id}
-        )
-        setLoading(false)
-        if (request.data.status) {
-            toast.success(request.data.message, {
-                position: toast.POSITION.TOP_CENTER,
-                autoClose: 2000
-            });
-            setTimeout(function () {
-                setGoto(true)
-            }, 2000);
+        if(userData.role.role === 'admin'){
+            setLoading(true)
+            const request = await axios.patch(
+                process.env.REACT_APP_API_URL + 'category/'+props.match.params.id,
+                {category_name}
+            )
+            setLoading(false)
+            if (request.data.status) {
+                toast.success(request.data.message, {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 2000
+                });
+                setTimeout(function () {
+                    setGoto(true)
+                }, 2000);
 
-        } else {
-            toast.error(request.data.message, {
+            } else {
+                toast.error(request.data.message, {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 3000
+                });
+            }
+        }else{
+            toast.error("Not Authorization", {
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 3000
             });
+            setLoading(false)
         }
+        
     }
     const resetData = async () => {
         setCategoryName('')
     }
     const setFormData = async () => {
         const request = await axios.get(
-            process.env.REACT_APP_API_URL + '/category/'+props.match.params.id,
+            process.env.REACT_APP_API_URL + 'category/'+props.match.params.id,
             {category_name}
         )
-        if (request.data.status) {
-            setCategoryName(request.data.data.category_name)
+        if (request.status) {
+            setCategoryName(request.data.data[0].category_name)
         } else {
             toast.error(request.data.message, {
                 position: toast.POSITION.TOP_CENTER,

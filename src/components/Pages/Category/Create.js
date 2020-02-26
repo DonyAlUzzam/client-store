@@ -12,7 +12,6 @@ function Create() {
             ? JSON.parse(window.localStorage.getItem('userData'))
             : {}
     const [category_name, setCategoryName] = useState('')
-    const [owner, setOwner] = useState('')
     const [loading, setLoading] = useState(false)
     const [goto, setGoto] = useState(false)
     axios.defaults.headers = {
@@ -20,27 +19,32 @@ function Create() {
         Authorization: `Bearer ${userData.token}`
     }
     const saveData = async () => {
-        setLoading(true)
-        const request = await axios.post(
-            process.env.REACT_APP_API_URL + '/category',
-            {category_name, owner}
-        )
-        setLoading(false)
-        if (request.data.status) {
-            toast.success(request.data.message, {position: toast.POSITION.TOP_CENTER, autoClose: 2000});
-            setTimeout(function () {
-                setGoto(true)
-            }, 2000);
-
-        } else {
-            toast.error(request.data.message, {position: toast.POSITION.TOP_CENTER, autoClose: 3000});
-        }
+            setLoading(true)
+            const request = await axios.post(
+                process.env.REACT_APP_API_URL + 'category',
+                {category_name}
+            )
+            setLoading(false)
+            if (request.data.status) {
+                toast.success(request.data.message, {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 2000
+                });
+                setTimeout(function () {
+                    setGoto(true)
+                }, 2000);
+    
+            } else {
+                toast.error(request.data.message, {position: toast.POSITION.TOP_CENTER, autoClose: 3000});
+            }
+      
+       
     }
     const resetData = async () => {
         setCategoryName('')
     }
     useEffect(() => {
-        setOwner(userData.data._id)
+        // setOwner(userData.data._id)
     }, [])
     return (
         <div

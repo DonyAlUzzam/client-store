@@ -11,13 +11,13 @@ function Create() {
         .getItem('userData')
             ? JSON.parse(window.localStorage.getItem('userData'))
             : {}
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
-    const [publisher, setPublisher] = useState('')
+    const [book_name, setBookName] = useState('')
+    const [desc, setDesc] = useState('')
+    const [price, setPrice] = useState('')
     const [author, setAuthor] = useState('')
-    const [category, setCategory] = useState('')
-    const [stock, setStock] = useState('')
-    const [owner, setOwner] = useState('')
+    const [category_id, setCategory] = useState('')
+    const [qty, setQty] = useState('')
+    const [cover, setCover] = useState('')
     const [dataCategory, setDataCategory] = useState([])
     const [loading, setLoading] = useState(false)
     const [goto, setGoto] = useState(false)
@@ -26,43 +26,61 @@ function Create() {
         Authorization: `Bearer ${userData.token}`
     }
     const saveData = async () => {
-        setLoading(true)
-        const request = await axios.post(
-            process.env.REACT_APP_API_URL + '/book',
-            {title, description, category, stock, owner, publisher, author}
-        )
-        setLoading(false)
-        if (request.data.status) {
-            toast.success(request.data.message, {
-                position: toast.POSITION.TOP_CENTER,
-                autoClose: 2000
-            });
-            setTimeout(function () {
-                setGoto(true)
-            }, 2000);
 
-        } else {
-            toast.error(request.data.message, {
+        const formData = new FormData()
+        formData.append('book_name',book_name)
+        formData.append('author',author)
+        formData.append('desc',desc)
+        formData.append('category_id',category_id)
+        formData.append('price',price)
+        formData.append('qty',qty)
+        formData.append('cover',cover)
+
+        if(userData.role.role === 'admin'){
+            setLoading(true)
+            const request = await axios.post(
+                process.env.REACT_APP_API_URL + 'books',formData
+            )
+            setLoading(false)
+            if (request.data.status) {
+                toast.success(request.data.message, {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 2000
+                });
+                setTimeout(function () {
+                    setGoto(true)
+                }, 2000);
+    
+            } else {
+                toast.error(request.data.message, {
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: 3000
+                });
+            }
+        } else{
+            toast.error("Not Authorization", {
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 3000
             });
-        }
+            setLoading(false)
+        }  
+       
     }
     const resetData = async () => {
-        setTitle('')
-        setDescription('')
-        setStock('')
-        setPublisher('')
+        setBookName('')
+        setDesc('')
+        setQty('')
+        setPrice('')
         setAuthor('')
     }
     async function getDataCategory() {
         const request = await axios.get(
-            process.env.REACT_APP_API_URL + '/category'
+            process.env.REACT_APP_API_URL + 'category'
         )
         setDataCategory(request.data.data)
     }
     useEffect(() => {
-        setOwner(userData.data._id)
+       
         getDataCategory()
     }, [])
     return (
@@ -98,22 +116,12 @@ function Create() {
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                value={title}
-                                                onChange={e => setTitle(e.target.value)}
+                                                value={book_name}
+                                                onChange={e => setBookName(e.target.value)}
                                                 placeholder="Book Name"/>
                                         </div>
                                     </div>
-                                    <div className="col-md-12">
-                                        <div className="form-group">
-                                            <label>Publisher</label>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                value={publisher}
-                                                onChange={e => setPublisher(e.target.value)}
-                                                placeholder="Book Name"/>
-                                        </div>
-                                    </div>
+                                   
                                     <div className="col-md-12">
                                         <div className="form-group">
                                             <label>Author</label>
@@ -130,8 +138,8 @@ function Create() {
                                             <label>Book Description</label>
                                             <textarea
                                                 className="form-control"
-                                                value={description}
-                                                onChange={e => setDescription(e.target.value)}
+                                                value={desc}
+                                                onChange={e => setDesc(e.target.value)}
                                                 placeholder="Description..."
                                                 defaultValue={""}rows={3}/>
 
@@ -156,9 +164,36 @@ function Create() {
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                value={stock}
-                                                onChange={e => setStock(e.target.value)}
+                                                value={qty}
+                                                onChange={e => setQty(e.target.value)}
                                                 placeholder="Stock"/>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-12">
+                                        <div className="form-group">
+                                            <label>Price</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                value={price}
+                                                onChange={e => setPrice(e.target.value)}
+                                                placeholder="Book Name"/>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-12">
+                                        <div className="form-group">
+                                        <label>Cover</label>
+                                            <input
+                                              className="form-control"
+                                              variant="outlined"
+                                              margin="normal"
+                                              required
+                                              fullWidth
+                                              name="upload"
+                                              type="file"
+                                              onChange={event=>setCover(event.target.files[0])}
+                                              id="file"
+                                              inputProps={{ accept: 'images/jpeg, images/jpg, images/png' }}/>
                                         </div>
                                     </div>
                                 </div>
